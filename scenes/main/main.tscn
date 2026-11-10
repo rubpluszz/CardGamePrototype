@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dwvijws2j563q"]
 
 [ext_resource type="Script" uid="uid://chjmlaf2jgqns" path="res://scripts/core/GameManager.gd" id="1_hyk8p"]
+[ext_resource type="Script" uid="uid://c7eayrsex0vas" path="res://scenes/ui/main.gd" id="1_iuonh"]
+[ext_resource type="Script" uid="uid://bxn80et3p2mqr" path="res://scripts/core/TurnManager.gd" id="3_k2fmo"]
 
 [node name="Main" type="Control" unique_id=1143681060]
 layout_mode = 3
@@ -9,59 +11,118 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_iuonh")
 
 [node name="GameManager" type="Control" parent="." unique_id=585623004]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_hyk8p")
 
+[node name="TurnManager" type="Control" parent="GameManager" unique_id=1236178942]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_k2fmo")
+
 [node name="Background" type="ColorRect" parent="." unique_id=1324736178]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Battlefield" type="Control" parent="." unique_id=702710558]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OpponentArea" type="Control" parent="Battlefield" unique_id=1083724663]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
 
 [node name="CenterArea" type="Control" parent="Battlefield" unique_id=1174757819]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DayNightIndicator" type="PanelContainer" parent="Battlefield/CenterArea" unique_id=80530361]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="Label" parent="Battlefield/CenterArea/DayNightIndicator" unique_id=977497744]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="TimeLabel" type="Label" parent="Battlefield/CenterArea/DayNightIndicator" unique_id=726460979]
+layout_mode = 2
+text = "DAY"
 
 [node name="PlayerArea" type="Control" parent="Battlefield" unique_id=1774836110]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="UI" type="Control" parent="." unique_id=1545753448]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Control" type="Control" parent="UI" unique_id=1610795754]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TurnButton" type="Button" parent="UI/Control" unique_id=1108974573]
+[node name="TurnButton" type="Button" parent="UI" unique_id=1108974573]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 1619.0
+offset_top = 872.0
+offset_right = 1843.0
+offset_bottom = 983.0
 
-[node name="EndTurnButton" type="Button" parent="UI/Control" unique_id=1305042371]
+[node name="EndTurnButton" type="Button" parent="UI" unique_id=1305042371]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 1623.0
+offset_top = 742.0
+offset_right = 1837.0
+offset_bottom = 861.0
+text = "End turn"
 
-[node name="GameInfo" type="Label" parent="UI/Control" unique_id=381431067]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="GameInfo" type="Label" parent="UI" unique_id=381431067]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 416.0
+offset_right = 103.0
+offset_bottom = 429.0
