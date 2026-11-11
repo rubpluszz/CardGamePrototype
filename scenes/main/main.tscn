@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://chjmlaf2jgqns" path="res://scripts/core/GameManager.gd" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://c7eayrsex0vas" path="res://scenes/ui/main.gd" id="1_iuonh"]
+[ext_resource type="PackedScene" uid="uid://bw4dc1nehfitt" path="res://scenes/cards/card_view.tscn" id="2_l3cfh"]
 [ext_resource type="Script" uid="uid://bxn80et3p2mqr" path="res://scripts/core/TurnManager.gd" id="3_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://cbrypjkdkqvuu" path="res://scenes/batelfield/card_slot.tscn" id="5_6q06x"]
+[ext_resource type="Script" uid="uid://wbl0e65be1ar" path="res://scripts/ui/BoardSlot.gd" id="6_ow5a4"]
 
 [node name="Main" type="Control" unique_id=1143681060]
 layout_mode = 3
@@ -11,7 +14,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_iuonh")
+card_view_scene = ExtResource("2_l3cfh")
 
 [node name="GameManager" type="Control" parent="." unique_id=585623004]
 layout_mode = 1
@@ -20,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_hyk8p")
 
 [node name="TurnManager" type="Control" parent="GameManager" unique_id=1236178942]
@@ -32,12 +38,14 @@ grow_vertical = 2
 script = ExtResource("3_k2fmo")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1324736178]
+modulate = Color(0.5449743, 0.54497427, 0.54497427, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.21283582, 0.21758813, 0.5971256, 1)
 
 [node name="Battlefield" type="Control" parent="." unique_id=702710558]
 layout_mode = 1
@@ -46,12 +54,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="OpponentArea" type="Control" parent="Battlefield" unique_id=1083724663]
+[node name="OpponentBoard" type="Control" parent="Battlefield" unique_id=1083724663]
 custom_minimum_size = Vector2(300, 300)
 anchors_preset = 0
 offset_right = 1920.0
 grow_horizontal = 2
+
+[node name="HeroSlot" type="Control" parent="Battlefield/OpponentBoard" unique_id=1011712005]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Row3" type="Control" parent="Battlefield/OpponentBoard" unique_id=1931506344]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Row2" type="Control" parent="Battlefield/OpponentBoard" unique_id=498613131]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Row1" type="Control" parent="Battlefield/OpponentBoard" unique_id=1051917498]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="CenterArea" type="Control" parent="Battlefield" unique_id=1174757819]
 custom_minimum_size = Vector2(300, 300)
@@ -65,14 +94,11 @@ grow_vertical = 2
 
 [node name="DayNightIndicator" type="PanelContainer" parent="Battlefield/CenterArea" unique_id=80530361]
 custom_minimum_size = Vector2(120, 60)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -30.0
-offset_right = 120.0
-offset_bottom = 30.0
-grow_vertical = 2
+layout_mode = 0
+offset_left = 45.000004
+offset_top = 143.0
+offset_right = 165.0
+offset_bottom = 203.0
 scale = Vector2(0.9962951, 1)
 
 [node name="Icon" type="Label" parent="Battlefield/CenterArea/DayNightIndicator" unique_id=977497744]
@@ -86,30 +112,114 @@ size_flags_horizontal = 0
 text = "DAY"
 
 [node name="TurnIndicator" type="Label" parent="Battlefield/CenterArea" unique_id=296298523]
-layout_mode = 0
-offset_left = 1757.0
-offset_top = 135.0
-offset_right = 1797.0
-offset_bottom = 171.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -18.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.9191581, 0.43499887, 0.6995268, 1)
 theme_override_font_sizes/font_size = 26
 
-[node name="PlayerArea" type="Control" parent="Battlefield" unique_id=1774836110]
+[node name="PlayerArea" type="VBoxContainer" parent="Battlefield" unique_id=1134480201]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -439.0
+offset_right = 190.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Row1" type="HBoxContainer" parent="Battlefield/PlayerArea" unique_id=842300616]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="CardSlot" parent="Battlefield/PlayerArea/Row1" unique_id=1614089239 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+script = ExtResource("6_ow5a4")
+
+[node name="CardSlot2" parent="Battlefield/PlayerArea/Row1" unique_id=872109606 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+script = ExtResource("6_ow5a4")
+slot_index = 1
+
+[node name="CardSlot3" parent="Battlefield/PlayerArea/Row1" unique_id=1719809587 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+script = ExtResource("6_ow5a4")
+slot_index = 2
+
+[node name="CardSlot4" parent="Battlefield/PlayerArea/Row1" unique_id=1512343366 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+script = ExtResource("6_ow5a4")
+slot_index = 3
+
+[node name="Row2" type="HBoxContainer" parent="Battlefield/PlayerArea" unique_id=564519081]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="CardSlot" parent="Battlefield/PlayerArea/Row2" unique_id=1206231916 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+script = ExtResource("6_ow5a4")
+row_index = 1
+
+[node name="CardSlot2" parent="Battlefield/PlayerArea/Row2" unique_id=1292907470 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+script = ExtResource("6_ow5a4")
+row_index = 1
+slot_index = 1
+
+[node name="CardSlot3" parent="Battlefield/PlayerArea/Row2" unique_id=548480731 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+script = ExtResource("6_ow5a4")
+row_index = 1
+slot_index = 2
+
+[node name="Row3" type="HBoxContainer" parent="Battlefield/PlayerArea" unique_id=565144915]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="CardSlot" parent="Battlefield/PlayerArea/Row3" unique_id=1416110744 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+script = ExtResource("6_ow5a4")
+row_index = 3
+
+[node name="CardSlot2" parent="Battlefield/PlayerArea/Row3" unique_id=1158711765 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+script = ExtResource("6_ow5a4")
+row_index = 3
+slot_index = 1
+
+[node name="HeroSlot" type="HBoxContainer" parent="Battlefield/PlayerArea" unique_id=1986878364]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="CardSlot" parent="Battlefield/PlayerArea/HeroSlot" unique_id=1540051503 instance=ExtResource("5_6q06x")]
+layout_mode = 2
+mouse_filter = 2
 
 [node name="ManaLabel" type="Label" parent="Battlefield/PlayerArea" unique_id=719892925]
-layout_mode = 0
-offset_left = 132.0
-offset_top = 125.0
-offset_right = 172.0
-offset_bottom = 148.0
+layout_mode = 2
 theme_override_colors/font_color = Color(0.44415447, 0.12475517, 0.8705251, 1)
 
 [node name="UI" type="Control" parent="." unique_id=1545753448]
@@ -119,20 +229,79 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="TurnButton" type="Button" parent="UI" unique_id=1108974573]
-layout_mode = 0
-offset_left = 1619.0
-offset_top = 872.0
-offset_right = 1739.0
-offset_bottom = 932.0
+[node name="PlayerBottomArea" type="Control" parent="UI" unique_id=195690500]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="HandArea" type="MarginContainer" parent="UI/PlayerBottomArea" unique_id=1995008635]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HandCards" type="HBoxContainer" parent="UI/PlayerBottomArea/HandArea" unique_id=17661394]
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="DeckPile" type="Control" parent="UI/PlayerBottomArea" unique_id=236806379]
+anchors_preset = 0
+offset_left = 85.0
+offset_top = 957.0
+offset_right = 125.0
+offset_bottom = 997.0
+mouse_filter = 1
+
+[node name="DeckBack" type="Control" parent="UI/PlayerBottomArea/DeckPile" unique_id=1264535980]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="DeckCount" type="Label" parent="UI/PlayerBottomArea/DeckPile" unique_id=1868420931]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="EndTurnButton" type="Button" parent="UI" unique_id=1305042371]
 layout_mode = 0
-offset_left = 1623.0
-offset_top = 742.0
-offset_right = 1743.0
-offset_bottom = 802.0
+offset_left = 1780.0
+offset_top = 541.0
+offset_right = 1900.0
+offset_bottom = 601.0
+mouse_filter = 1
 text = "End turn"
 
 [node name="GameInfo" type="Label" parent="UI" unique_id=381431067]

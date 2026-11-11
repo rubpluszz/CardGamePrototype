@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bggds5njuy8f"]
+
+[ext_resource type="Texture2D" uid="uid://coxgm8ae2kagl" path="res://assets/cards/test/phoenix_feather.png" id="1_837nu"]
+[ext_resource type="Script" uid="uid://bswh8f7u6jvig" path="res://scripts/enitities/CardData.gd" id="1_efsnc"]
+
+[resource]
+script = ExtResource("1_efsnc")
+id = "tesr_001"
+description = "test"
+attack = 2
+health = 3
+artwork = ExtResource("1_837nu")
+metadata/_custom_type_script = "uid://bswh8f7u6jvig"
