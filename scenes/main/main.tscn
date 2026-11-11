@@ -48,12 +48,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="OpponentArea" type="Control" parent="Battlefield" unique_id=1083724663]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 0
+offset_right = 1920.0
 grow_horizontal = 2
 
 [node name="CenterArea" type="Control" parent="Battlefield" unique_id=1174757819]
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -65,27 +66,36 @@ grow_vertical = 2
 [node name="DayNightIndicator" type="PanelContainer" parent="Battlefield/CenterArea" unique_id=80530361]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -60.0
 offset_top = -30.0
-offset_right = 60.0
+offset_right = 120.0
 offset_bottom = 30.0
-grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9962951, 1)
 
 [node name="Icon" type="Label" parent="Battlefield/CenterArea/DayNightIndicator" unique_id=977497744]
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 24
 
 [node name="TimeLabel" type="Label" parent="Battlefield/CenterArea/DayNightIndicator" unique_id=726460979]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "DAY"
 
+[node name="TurnIndicator" type="Label" parent="Battlefield/CenterArea" unique_id=296298523]
+layout_mode = 0
+offset_left = 1757.0
+offset_top = 135.0
+offset_right = 1797.0
+offset_bottom = 171.0
+theme_override_colors/font_color = Color(0.9191581, 0.43499887, 0.6995268, 1)
+theme_override_font_sizes/font_size = 26
+
 [node name="PlayerArea" type="Control" parent="Battlefield" unique_id=1774836110]
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -93,6 +103,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="ManaLabel" type="Label" parent="Battlefield/PlayerArea" unique_id=719892925]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 125.0
+offset_right = 172.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0.44415447, 0.12475517, 0.8705251, 1)
 
 [node name="UI" type="Control" parent="." unique_id=1545753448]
 layout_mode = 1
@@ -106,23 +124,24 @@ grow_vertical = 2
 layout_mode = 0
 offset_left = 1619.0
 offset_top = 872.0
-offset_right = 1843.0
-offset_bottom = 983.0
+offset_right = 1739.0
+offset_bottom = 932.0
 
 [node name="EndTurnButton" type="Button" parent="UI" unique_id=1305042371]
 layout_mode = 0
 offset_left = 1623.0
 offset_top = 742.0
-offset_right = 1837.0
-offset_bottom = 861.0
+offset_right = 1743.0
+offset_bottom = 802.0
 text = "End turn"
 
 [node name="GameInfo" type="Label" parent="UI" unique_id=381431067]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = 416.0
-offset_right = 103.0
-offset_bottom = 429.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 784.0
+offset_top = -1114.0
+offset_right = 785.0
+offset_bottom = -1091.0
+grow_horizontal = 2
